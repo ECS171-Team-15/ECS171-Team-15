@@ -13,3 +13,11 @@ Changes to the repository are not made directly. Instead:
 **Commits**
 
 Remember to make your commit messages meaningful. This will help others understand the changes you made better!
+
+By convention, your commit messages should be in the present tense. For example, the commit message:
+
+*Implemented gradient descent*
+
+should instead be:
+
+*Implement gradient descent*
