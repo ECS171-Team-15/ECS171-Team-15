@@ -34,11 +34,11 @@ if __name__ == '__main__':
     new_model = KerasClassifier(build_fn=create_model, verbose=0)
 
     # define the grid search parameters
-    node_layer_1 = [3, 6, 12]
-    node_layer_2 = [3, 6, 12]
+    num_layers = [3, 6, 12]
+    num_nodes = [3, 6, 12]
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [1, 5, 10]
-    param_grid = dict(node_layer_1=node_layer_1, node_layer_2=node_layer_2, learning_rate=learning_rate, epochs=epochs)
+    param_grid = dict(num_layers=num_layers, num_nodes=num_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
     grid_result = grid.fit(feature_data, class_data)
 
