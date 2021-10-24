@@ -60,8 +60,8 @@ def create_dataset(preprocessed_images: dict, positive_dirs: list):
     	for image in images:
     		# Convert images to list of pixel values
     		pixels = list(image.getdata())
-    		# Mark positive images
-    		if positive_dirs.count > 0:
+    		if positive_dirs.count(dirname) > 0:
+    			# These images are positive, so mark them
     			class_value = 1
     		else:
     			class_value = 0
