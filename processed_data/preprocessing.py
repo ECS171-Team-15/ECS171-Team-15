@@ -37,8 +37,10 @@ if __name__ == '__main__':
 	image_dirs = [COVID_PATH, NONCOVID_PATH]
 	positive_dirs = [COVID_PATH]
 
+	print("Generating mean dimensions...")
 	mean_width, mean_height = get_mean_dimensions(image_dirs)
 
+	print("Creating CSV dataset...")
 	# Create CSV header
 	num_pixels = mean_width * mean_height
 	header = [f"pixel{i+1}" for i in range(num_pixels)]
@@ -51,12 +53,12 @@ if __name__ == '__main__':
 		for image_name in image_names:
 			processed_image_obj = preprocess_image(f"{dir_name}/{image_name}", mean_width, mean_height)
 			
-			# Convert image object to list of pixel values
+			# Convert image object to a row of pixel values
 			pixels = list(processed_image_obj.getdata())
 
-			# Include image class in each row
+			# Include image class value in each row
 			if positive_dirs.count(dir_name) > 0:
-				# This image is positive
+				# This image is COVID-positive
 				class_value = 1
 			else:
 				class_value = 0
@@ -69,3 +71,5 @@ if __name__ == '__main__':
 	with open("full_data.csv", "w+") as csvfile:
 		csv_writer = csv.writer(csvfile, delimiter=',')
 		csv_writer.writerows(csv_rows)
+
+	print("Done.")
