@@ -49,7 +49,7 @@ if __name__ == '__main__':
     height, width = get_mean_dimensions()
     covid_obj, non_covid_obj = get_resized_image(height=height, width=width)
     csv_file = []
-    header = [f"pixel{i+1}" for i in range(120183)] + ["class"]
+    header = [f"pixel{i+1}" for i in range(width*height)] + ["class"]
     csv_file.append(header)
     for obj in covid_obj:
         pixel_array = np.array(obj).flatten()
