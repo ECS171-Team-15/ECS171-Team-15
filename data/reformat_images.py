@@ -37,7 +37,7 @@ def get_resized_image(height: int, width: int):
     non_covid_image_objs = []
     for name in covid_names:
         im = Image.open(f"../Images-processed/COVID/Useable/{name}")
-        im = im.resize((height, width))
+        im = im.resize((width, height))
         covid_image_objs.append(im.convert("L"))
     for name in non_covid_names:
         im = Image.open(f"../Images-processed/CT_NonCOVID/Usable/{name}")
