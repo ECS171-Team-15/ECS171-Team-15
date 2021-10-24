@@ -38,7 +38,7 @@ if __name__ == '__main__':
     num_nodes = [3, 6, 12]
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [1, 5, 10]
-    input_dim = feature_data.shape[1]
+    input_dim = [feature_data.shape[1]]
     param_grid = dict(input_dim=input_dim, num_layers=num_layers, num_nodes=num_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
     grid_result = grid.fit(feature_data, class_data)
