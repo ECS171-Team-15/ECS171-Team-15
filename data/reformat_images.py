@@ -53,7 +53,7 @@ if __name__ == '__main__':
     csv_file.append(header)
     for obj in covid_obj:
         pixel_array = np.array(obj).flatten()
-        pixel_array = np.append(pixel_array, 0).tolist()
+        pixel_array = np.append(pixel_array, 1).tolist()
         csv_file.append(pixel_array)
     for obj in non_covid_obj:
         pixel_array = np.array(obj).flatten()
