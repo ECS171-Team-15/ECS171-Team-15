@@ -6,12 +6,12 @@ from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
 
 
-def create_model(learning_rate, num_layers, num_nodes):
+def create_model(learning_rate, num_layers, num_nodes, input_dim):
     # Set up layers for the model
     model = Sequential()
 
     # Input layer
-    model.add(Dense(16, input_dim=120183, activation='sigmoid'))
+    model.add(Dense(16, input_dim=input_dim, activation='sigmoid'))
     # Hidden layer
     for _ in range(num_layers):
         model.add(Dense(num_nodes, activation='relu'))
@@ -38,7 +38,8 @@ if __name__ == '__main__':
     num_nodes = [3, 6, 12]
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [1, 5, 10]
-    param_grid = dict(num_layers=num_layers, num_nodes=num_nodes, learning_rate=learning_rate, epochs=epochs)
+    input_dim = feature_data.shape[1]
+    param_grid = dict(input_dim=input_dim, num_layers=num_layers, num_nodes=num_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
     grid_result = grid.fit(feature_data, class_data)
 
