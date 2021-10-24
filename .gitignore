@@ -2,5 +2,8 @@
 /.idea
 **/__pycache__
 
+# Dataset is too large to be uploaded to git
 /processed_data/full_data.csv
 
+# Test generated files
+processed_data/*.png
