@@ -37,7 +37,7 @@ def get_mean_dimensions(dirs: list) -> list:
 		    height.append(h)
 		    
 	# Return averages
-    return sum(height)//len(height), sum(width)//len(width)
+    return sum(width)//len(width), sum(height)//len(height)
 
 # Resize image and convert to grayscale
 def preprocess_image(image_path: str, width: int, height: int) -> Image:
