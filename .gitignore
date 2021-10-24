@@ -1,4 +1,6 @@
 **/.DS_Store
-/data/full_data.csv
 /.idea
 **/__pycache__
+
+/processed_data/full_data.csv
+
