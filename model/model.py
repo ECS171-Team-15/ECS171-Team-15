@@ -1,6 +1,8 @@
 import time
 import tensorflow as tf
 import numpy as np
+import sys
+
 import pandas as pd
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -24,9 +26,11 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 
     opt = SGD(learning_rate=learning_rate)
     model.compile(loss='binary_crossentropy', optimizer=opt , metrics=['accuracy'])
+
     return model
 
-
+# Pass in # of hidden layer nodes as arguments
+# Usage example: python3 model.py 1000, 100, 20, 5
 if __name__ == '__main__':
     # Save the start time to calculate the total running time
     start_time = time.time()
@@ -41,7 +45,11 @@ if __name__ == '__main__':
     new_model = KerasClassifier(build_fn=create_model, verbose=0)
 
     # define the grid search parameters
-    hidden_nodes = [(1000, 50, 5), (1500, 100, 10), (2000, 200, 20, 5)]
+    # Read hidden nodes from program arguments
+    hidden_nodes = []
+    for i in range(1, len(sys.argv)):
+    	hidden_nodes
+    
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [10, 50, 100]
     input_dim = [feature_data.shape[1]]
