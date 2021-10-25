@@ -10,10 +10,13 @@ def create_model(learning_rate, num_layers, hidden_nodes, input_dim):
     model = Sequential()
 
     # Input layer
-    model.add(Dense(input_dim, activation='sigmoid'))
+    model.add(Dense(hidden_nodes[0], input_dim=input_dim, activation='sigmoid'))
     
     # Hidden layers
-    for node_count in hidden_nodes:
+    for i in range(len(hidden_nodes)):
+        if i == 0:
+        	# Already specified first hidden layer's # of nodes
+        	continue
         model.add(Dense(node_count, activation='relu'))
         
     # Output layer
@@ -35,8 +38,6 @@ if __name__ == '__main__':
     new_model = KerasClassifier(build_fn=create_model, verbose=0)
 
     # define the grid search parameters
-    # num_layers = [3, 6, 12]
-    # num_nodes = [3, 6, 12]
     hidden_nodes = [(1000, 50, 5), (1500, 100, 10), (2000, 200, 20, 5)]
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [10, 100, 500]
