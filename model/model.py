@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # Read hidden nodes from program arguments
     hidden_nodes = []
     for i in range(1, len(sys.argv)):
-    	hidden_nodes
+    	hidden_nodes.append(sys.argv[i])
     
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [10, 50, 100]
