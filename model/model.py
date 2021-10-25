@@ -1,4 +1,5 @@
 import time
+import tensorflow as tf
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import Sequential
@@ -7,6 +8,7 @@ from tensorflow.keras.optimizers import SGD
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
 
+@tf.function(jit_compile=True)
 def create_model(learning_rate, hidden_nodes, input_dim):
     # Set up layers for the model
     model = Sequential()
