@@ -8,17 +8,19 @@ from tensorflow.keras.optimizers import SGD
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
 
-@tf.function(jit_compile=True)
 def create_model(learning_rate, hidden_nodes, input_dim):
     # Set up layers for the model
     model = Sequential()
 
     # Input layer
-    model.add(Dense(5000, input_dim=input_dim, activation='sigmoid'))
+    model.add(Dense(hidden_nodes[0], input_dim=input_dim, activation='sigmoid'))
     
     # Hidden layers
-    for node_count in hidden_nodes:
-        model.add(Dense(node_count, activation='relu'))
+    for i in range(len(hidden_nodes)):
+        if i == 0:
+            # Already specified first hidden layer's # of nodes
+            continue
+        model.add(Dense(hidden_nodes[i], activation='relu'))
         
     # Output layer
     model.add(Dense(1, activation='sigmoid'))
