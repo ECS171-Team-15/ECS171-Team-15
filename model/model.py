@@ -16,10 +16,7 @@ def create_model(learning_rate, hidden_nodes, input_dim):
     model.add(Dense(hidden_nodes[0], input_dim=input_dim, activation='sigmoid'))
     
     # Hidden layers
-    for i in range(len(hidden_nodes)):
-        if i == 0:
-            # Already specified first hidden layer's # of nodes
-            continue
+    for i in range(1, len(hidden_nodes)):
         model.add(Dense(hidden_nodes[i], activation='relu'))
         
     # Output layer
