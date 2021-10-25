@@ -30,7 +30,7 @@ def create_model(learning_rate, hidden_nodes, input_dim):
     return model
 
 # Pass in # of hidden layer nodes as arguments
-# Usage example: python3 model.py 1000, 100, 20, 5
+# Usage example: python3 model.py 1000 100 20 5
 if __name__ == '__main__':
     # Save the start time to calculate the total running time
     start_time = time.time()
