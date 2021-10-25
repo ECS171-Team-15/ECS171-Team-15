@@ -1,4 +1,5 @@
 import time
+import tensorflow as tf
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import Sequential
@@ -12,11 +13,14 @@ def create_model(learning_rate, hidden_nodes, input_dim):
     model = Sequential()
 
     # Input layer
-    model.add(Dense(5000, input_dim=input_dim, activation='sigmoid'))
+    model.add(Dense(hidden_nodes[0], input_dim=input_dim, activation='sigmoid'))
     
     # Hidden layers
-    for node_count in hidden_nodes:
-        model.add(Dense(node_count, activation='relu'))
+    for i in range(len(hidden_nodes)):
+        if i == 0:
+            # Already specified first hidden layer's # of nodes
+            continue
+        model.add(Dense(hidden_nodes[i], activation='relu'))
         
     # Output layer
     model.add(Dense(1, activation='sigmoid'))
