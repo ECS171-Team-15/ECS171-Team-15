@@ -34,12 +34,16 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 if __name__ == '__main__':
     # Save the start time to calculate the total running time
     start_time = time.time()
-
+    print('Opening dataset...', end='')
+    
     # load data and separate them into class and features
     # TODO: create module of file paths
     df = pd.read_csv("../processed_data/full_data.csv")
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
+    
+    print('Done.')
+    print('Creating model...', end='')
 
     # create classifier with our model
     new_model = KerasClassifier(build_fn=create_model, verbose=0)
@@ -48,7 +52,7 @@ if __name__ == '__main__':
     # Read hidden nodes from program arguments
     hidden_nodes = []
     for i in range(1, len(sys.argv)):
-    	hidden_nodes.append(sys.argv[i])
+        hidden_nodes.append(sys.argv[i])
     
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [10, 50, 100]
@@ -56,6 +60,9 @@ if __name__ == '__main__':
     
     param_grid = dict(input_dim=input_dim, hidden_nodes=hidden_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
+    
+    print('Done.')
+    print("Training model...", end='')
     
     # Train model
     grid_result = grid.fit(np.asarray(feature_data).astype('float64'), np.asarray(class_data).astype('float64'))
@@ -72,3 +79,5 @@ if __name__ == '__main__':
 
     # Print total running time of this program
     print(f"\nIt took {time.time() - start_time} seconds to run this program\n")
+    
+
