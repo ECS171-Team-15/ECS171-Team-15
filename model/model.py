@@ -32,6 +32,11 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 # Pass in # of hidden layer nodes as arguments
 # Usage example: python3 model.py 1000 100 20 5
 if __name__ == '__main__':
+    # Input validation
+    if len(sys.argv) < 2:
+        print("Usage: python3 model.py count1 count2 ...")
+        exit()
+    
     # Save the start time to calculate the total running time
     start_time = time.time()
     print('Opening dataset...', end='')
