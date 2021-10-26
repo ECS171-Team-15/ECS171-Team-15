@@ -60,7 +60,7 @@ if __name__ == '__main__':
         hidden_nodes.append(sys.argv[i])
     
     learning_rate = [0.1, 0.3, 0.5]
-    epochs = [10, 50, 100]
+    epochs = [10, 100, 500]
     input_dim = [feature_data.shape[1]]
     
     param_grid = dict(input_dim=input_dim, hidden_nodes=hidden_nodes, learning_rate=learning_rate, epochs=epochs)
