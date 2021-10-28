@@ -7,3 +7,6 @@
 
 # Test generated files
 processed_data/*.png
+
+# Nohup redirecteed output
+**/nohup.out
