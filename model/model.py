@@ -46,7 +46,6 @@ if __name__ == '__main__':
     df = pd.read_csv("../processed_data/full_data.csv")
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
-    
     print('Done.')
     print('Creating model...', end='')
 
