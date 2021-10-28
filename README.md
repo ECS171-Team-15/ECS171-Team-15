@@ -18,7 +18,7 @@
 
 ### Running Model on CSIF
 
-1. Log into CSIF via the command line
+1. Log into CSIF via the command line on any of the following computers: PC21 - PC25. These computers are the only ones with libraries that allow Tensorflow to work with the GPU.
 2. Clone this repository by running: `git clone https://github.com/jndnguyen123/ECS171-Team-15`. Enter your Github username and password when prompted. If git asks you to create a [token](https://github.com/settings/tokens), you can generate one as your password that only works on CSIF. Also, if you don't want git to prompt you to enter your username and password every time, you may run `git config --global credential.helper store` to [save](https://stackoverflow.com/a/12240995) your password in a file located in your `home` directory.
 3. Once the repository has been cloned, generate the dataset using the following commands:
 
