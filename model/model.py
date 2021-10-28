@@ -5,20 +5,21 @@ import sys
 
 import pandas as pd
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, InputLayer
 from tensorflow.keras.optimizers import SGD
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
+import tensorflow.config
 
 def create_model(learning_rate, hidden_nodes, input_dim):
     # Set up layers for the model
     model = Sequential()
 
     # Input layer
-    model.add(Dense(hidden_nodes[0], input_dim=input_dim, activation='sigmoid'))
+    model.add(InputLayer(input_dim))
     
     # Hidden layers
-    for i in range(1, len(hidden_nodes)):
+    for i in range(0, len(hidden_nodes)):
         model.add(Dense(hidden_nodes[i], activation='relu'))
         
     # Output layer
@@ -32,6 +33,14 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 # Pass in # of hidden layer nodes as arguments
 # Usage example: python3 model.py 1000 100 20 5
 if __name__ == '__main__':
+    # Limit memory usage of GPU
+    gpus = tensorflow.config.list_physical_devices('GPU')
+    if gpus:
+        try:
+            tensorflow.config.experimental.set_memory_growth(gpus[0], True)
+        except RuntimeError as e:
+            print("Julian:", e) 
+    
     # Input validation
     if len(sys.argv) < 2:
         print("Usage: python3 model.py count1 count2 ...")
