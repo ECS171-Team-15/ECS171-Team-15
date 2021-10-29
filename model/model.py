@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # load data and separate them into class and features
     # TODO: create module of file paths
     #df = pd.read_csv("../processed_data/full_data.csv")
-    df = pd.read_csv("../processed_data/us16half_half_data.csv")
+    df = pd.read_csv("../processed_data/us16half_data.csv")
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
     
