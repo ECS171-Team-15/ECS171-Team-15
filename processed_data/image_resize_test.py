@@ -10,10 +10,10 @@ if __name__ == '__main__':
 	# Original dimensions (172, 124)
 	upscaled_image = preprocessing.preprocess_image(test_image_path, 300, 300)
 	upscaled_image.save(UPSCALED_NAME)
-	
+
 	downscaled_image = preprocessing.preprocess_image(test_image_path, 100, 100)
 	downscaled_image.save(DOWNSCALED_NAME)
-	
+
 	# Open both original and resized versions
 	os.system(f'xdg-open {test_image_path}')
 	os.system(f'xdg-open {UPSCALED_NAME}')
