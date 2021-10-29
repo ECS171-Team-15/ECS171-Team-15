@@ -2,10 +2,11 @@ import os
 import numpy as np
 import csv
 from PIL import Image
-
-COVID_PATH = "../raw_data/COVID/Useable"
-NONCOVID_PATH = "../raw_data/CT_NonCOVID/Usable"
-
+#testing with us128 small test case with 128 pictures
+#COVID_PATH = "../raw_data/COVID/Useable/"
+#NONCOVID_PATH = "../raw_data/CT_NonCOVID/Usable/"
+COVID_PATH = "../raw_data/COVID/us16/"
+NONCOVID_PATH = "../raw_data/CT_NonCOVID/us16/"
 # Output the average width and height of all images in specified folders
 def get_mean_dimensions(dirs: list) -> list:
     height = []
@@ -39,9 +40,13 @@ if __name__ == '__main__':
 
 	print("Generating mean dimensions...")
 	mean_width, mean_height = get_mean_dimensions(image_dirs)
-
+	print("Mean w: " + str(mean_width))
+	print("Mean h: " + str(mean_height))
+	mean_width //= 2#half
+	mean_height //= 2#half
 	print("Creating CSV dataset...")
 	# Create CSV header
+
 	num_pixels = mean_width * mean_height
 	header = [f"pixel{i+1}" for i in range(num_pixels)]
 	header.append("class")
@@ -68,7 +73,7 @@ if __name__ == '__main__':
 			csv_rows.append(pixels)
 
 	# Parse list of rows into csv file
-	with open("full_data.csv", "w+") as csvfile:
+	with open("us16half_data.csv", "w+") as csvfile:
 		csv_writer = csv.writer(csvfile, delimiter=',')
 		csv_writer.writerows(csv_rows)
 
