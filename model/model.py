@@ -57,8 +57,8 @@ if __name__ == '__main__':
     
     # load data and separate them into class and features
     # TODO: create module of file paths
-    df = pd.read_csv("../processed_data/full_data.csv")
-    # df = pd.read_csv("../processed_data/us16half_data.csv")
+    #df = pd.read_csv("../processed_data/full_data.csv")
+    df = pd.read_csv("../processed_data/us16half_half_data.csv")
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
     
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     epochs = [10, 100, 500]
     input_dim = [feature_data.shape[1]]
     print("input_dim: " + str(input_dim))
-    exit(1)
+    #exit(1)
     param_grid = dict(input_dim=input_dim, hidden_nodes=hidden_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
     
