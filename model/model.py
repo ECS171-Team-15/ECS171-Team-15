@@ -38,6 +38,11 @@ if __name__ == '__main__':
     if gpus:
         try:
             tensorflow.config.experimental.set_memory_growth(gpus[0], True)
+            tf.config.set_logical_device_configuration(
+                gpus[0],
+                [tf.config.LogicalDeviceConfiguration(memory_limit=3072)])
+            logical_gpus = tf.config.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPU Count: ,", len(logical_gpus), "Logical GPU Count:")
         except RuntimeError as e:
             print("Julian:", e) 
     
@@ -53,6 +58,7 @@ if __name__ == '__main__':
     # load data and separate them into class and features
     # TODO: create module of file paths
     df = pd.read_csv("../processed_data/full_data.csv")
+    # df = pd.read_csv("../processed_data/us16half_data.csv")
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
     
@@ -71,7 +77,8 @@ if __name__ == '__main__':
     learning_rate = [0.1, 0.3, 0.5]
     epochs = [10, 100, 500]
     input_dim = [feature_data.shape[1]]
-    
+    print("input_dim: " + str(input_dim))
+    exit(1)
     param_grid = dict(input_dim=input_dim, hidden_nodes=hidden_nodes, learning_rate=learning_rate, epochs=epochs)
     grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
     
