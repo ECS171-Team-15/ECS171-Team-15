@@ -19,7 +19,7 @@ def get_mean_dimensions(dirs: list) -> list:
 		    w, h = im.size
 		    width.append(w)
 		    height.append(h)
-		    
+
 	# Return averages
     return sum(width)//len(width), sum(height)//len(height)
 
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 	    # Preprocess each image and add as row to CSV
 		for image_name in image_names:
 			processed_image_obj = preprocess_image(f"{dir_name}/{image_name}", mean_width, mean_height)
-			
+
 			# Convert image object to a row of pixel values
 			pixels = list(processed_image_obj.getdata())
 
