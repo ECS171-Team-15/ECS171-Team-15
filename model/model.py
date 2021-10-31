@@ -70,7 +70,7 @@ if __name__ == '__main__':
     input_dim = [feature_data.shape[1]]
     param_grid = dict(input_dim=input_dim, hidden_nodes=hidden_nodes, learning_rate=learning_rate, epochs=epochs)
 
-    grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=-1, cv=3)
+    grid = GridSearchCV(estimator=new_model, param_grid=param_grid, n_jobs=1, cv=3)
 
     # Train model
     feature_data = np.asarray(feature_data).astype('float64')
