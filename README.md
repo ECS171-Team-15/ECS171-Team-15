@@ -5,25 +5,30 @@
 
 ```
 ├── model
-│   └── model.py # Code that contains model and trains it
+│   └── model.py # Trains model using preprocessed dataset
 ├── processed_data
 │   ├── image_resize_test.py
-│   ├── preprocessing.py # Generates the dataset for model.py to use
+│   ├── preprocessing.py # Preprocesses the dataset
 │   ├── preprocessing_test.py
-├── raw_data 
+├── raw_data # NOTE: Generated Folder. Not in the repository by default
 │   ├── COVID # Contains the positive images
 │   └── CT_NonCOVID # Contains the negative images
 └── README.md
+└── fetch-data.sh # Downloads the raw dataset
 ```
 
 ### Running Model on CSIF
 
 1. Log into CSIF via the command line on any of the following computers: PC21 - PC25. These computers are the only ones with libraries that allow Tensorflow to work with the GPU.
 2. Clone this repository by running: `git clone https://github.com/jndnguyen123/ECS171-Team-15`. Enter your Github username and password when prompted. If git asks you to create a [token](https://github.com/settings/tokens), you can generate one as your password that only works on CSIF. Also, if you don't want git to prompt you to enter your username and password every time, you may run `git config --global credential.helper store` to [save](https://stackoverflow.com/a/12240995) your password in a file located in your `home` directory.
-3. Once the repository has been cloned, generate the dataset using the following commands:
-
+3. Once the repository has been cloned, download the dataset by running:
 ```
-cd ECS171-Team-15/processed-data
+cd ECS171-Team-15
+bash fetch-data.sh
+```
+4. Preprocess the data by running:
+```
+cd processed-data
 python3 preprocessing.py
 ```
 4. Finally, run the model with the specified hyperparameters in this [spreadsheet](https://docs.google.com/spreadsheets/d/1kgf6JkcgKTh_2mezn_cXr7rtRvddTHesqjOtpwjVX6k/edit#gid=0). The source code should have the range of learning rates and epoches in the source code from that spreadsheet, but you should double check. For the number of nodes per hidden layer, you must pass them as arguments to `model.py`:
