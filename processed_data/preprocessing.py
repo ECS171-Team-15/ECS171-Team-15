@@ -3,8 +3,8 @@ import numpy as np
 import csv
 from PIL import Image
 
-COVID_PATH = "../raw_data/COVID/Useable"
-NONCOVID_PATH = "../raw_data/CT_NonCOVID/Usable"
+COVID_PATH = "../raw_data/CT_COVID"
+NONCOVID_PATH = "../raw_data/CT_NonCOVID"
 
 # Output the average width and height of all images in specified folders
 def get_mean_dimensions(dirs: list) -> list:
