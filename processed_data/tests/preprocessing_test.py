@@ -1,5 +1,7 @@
 import unittest
 
+import sys
+sys.path.append('..')
 import preprocessing
 
 class MeanDimensions(unittest.TestCase):
