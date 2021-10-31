@@ -6,7 +6,7 @@
 /processed_data/full_data.csv
 
 # Test generated files
-processed_data/*.png
+processed_data/tests/*.png
 
 # Nohup redirecteed output
 **/nohup.out
