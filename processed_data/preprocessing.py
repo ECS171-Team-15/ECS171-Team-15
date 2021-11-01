@@ -2,9 +2,7 @@ import os
 import numpy as np
 import csv
 from PIL import Image
-
-COVID_PATH = "../raw_data/CT_COVID"
-NONCOVID_PATH = "../raw_data/CT_NonCOVID"
+import sys
 
 # Output the average width and height of all images in specified folders
 def get_mean_dimensions(dirs: list) -> list:
@@ -34,13 +32,21 @@ def preprocess_image(image_path: str, width: int, height: int) -> Image:
 if __name__ == '__main__':
 	csv_rows = []
 
+	# Input validation
+	# Must take proper keyword as argument
+	if len(sys.argv) < 2 and (sys.argv[1] != "original" or sys.argv[1] != "modified"):
+		print("Usage: python3 preprocessing.py (original|modified)")
+
+	# Generate either modified or original dataset
+	COVID_PATH = f'../raw_data/{sys.argv[1]}/CT_COVID'
+	NONCOVID_PATH = f'../raw_data/{sys.argv[1]}/CT_NonCOVID'
 	image_dirs = [COVID_PATH, NONCOVID_PATH]
 	positive_dirs = [COVID_PATH]
 
 	print("Generating mean dimensions...")
 	mean_width, mean_height = get_mean_dimensions(image_dirs)
 
-	print("Creating CSV dataset...")
+	print("Creating CSV dataset file...")
 	# Create CSV header
 	num_pixels = mean_width * mean_height
 	header = [f"pixel{i+1}" for i in range(num_pixels)]
@@ -68,7 +74,7 @@ if __name__ == '__main__':
 			csv_rows.append(pixels)
 
 	# Parse list of rows into csv file
-	with open("full_data.csv", "w+") as csvfile:
+	with open(f"{sys.argv[1]}.csv", "w+") as csvfile:
 		csv_writer = csv.writer(csvfile, delimiter=',')
 		csv_writer.writerows(csv_rows)
 

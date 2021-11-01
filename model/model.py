@@ -10,8 +10,6 @@ from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
 import tensorflow.config
 
-DATASET_PATH = '../processed_data/full_data.csv'
-
 def create_model(learning_rate, hidden_nodes, input_dim):
     # Set up layers for the model
     model = Sequential()
@@ -31,8 +29,6 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 
     return model
 
-# Pass in # of hidden layer nodes as arguments
-# Usage example: python3 model.py 1000 100 20 5
 if __name__ == '__main__':
     # Save the start time to calculate the total running time
     start_time = time.time()
@@ -46,14 +42,14 @@ if __name__ == '__main__':
             print(e)
 
     # Input validation
-    if len(sys.argv) < 2:
-        print("Usage: python3 model.py count1 count2 ...")
+    if len(sys.argv) < 2 and (sys.argv[1] != "original" or sys.argv[1] != "modified"):
+        print("Usage: python3 model.py [original|modified] [count1] [count2] ...")
         exit()
 
     print('Opening dataset...', end='')
 
     # Load data and separate class and features
-    df = pd.read_csv(DATASET_PATH)
+    df = pd.read_csv(f'../processed_data/{sys.argv[1]}.csv')
     feature_data = df.drop("class", axis=1)
     class_data = df.iloc[:, df.shape[1]-1]
 
