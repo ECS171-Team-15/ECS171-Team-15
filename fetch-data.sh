@@ -10,7 +10,15 @@ if [[ $1 == '-h' ]]; then
 	exit
 fi
 
+check_and_remove_dir(){
+	test -e $1
+	if [[ $? -eq 0 ]]; then
+		rm -rf $1
+	fi
+}
+
 RAW_DATA_PATH='./raw_data'
+check_and_remove_dir $RAW_DATA_PATH
 
 mkdir $RAW_DATA_PATH
 cd $RAW_DATA_PATH
@@ -18,13 +26,6 @@ cd $RAW_DATA_PATH
 # Assume zip files have these names
 POSITIVE_ZIP='CT_COVID.zip'
 NEGATIVE_ZIP='CT_NonCOVID.zip'
-
-check_and_remove_dir(){
-	test -e $1
-	if [[ $? -eq 0 ]]; then
-		rm -rf $1
-	fi
-}
 
 retrieve_dataset(){
 	# Make directory for this dataset
