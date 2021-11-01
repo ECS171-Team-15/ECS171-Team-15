@@ -33,8 +33,8 @@ retrieve_dataset(){
 	cd $2
 
 	# Download zip files from link
-	wget "${LINK}/${POSITIVE_ZIP}"
-	wget "${LINK}/${NEGATIVE_ZIP}"
+	wget "$1/${POSITIVE_ZIP}"
+	wget "$1/${NEGATIVE_ZIP}"
 
 	unzip $POSITIVE_ZIP
 	unzip $NEGATIVE_ZIP
