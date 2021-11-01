@@ -11,7 +11,7 @@
 │   ├── preprocessing.py # Preprocesses the dataset
 │   ├── preprocessing_test.py
 ├── raw_data # NOTE: Generated Folder. Not in the repository by default
-│   ├── COVID # Contains the positive images
+│   ├── CT_COVID # Contains the positive images
 │   └── CT_NonCOVID # Contains the negative images
 └── README.md
 └── fetch-data.sh # Downloads the raw dataset
@@ -24,7 +24,9 @@
 3. Once the repository has been cloned, download the dataset by running:
 ```
 cd ECS171-Team-15
-bash fetch-data.sh
+bash fetch-data.sh [modified]
+# Add the modified keyword to download the modified dataset.
+# Otherwise, don't provide arguments to get the original dataset.
 ```
 4. Preprocess the data by running:
 ```
