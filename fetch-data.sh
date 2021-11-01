@@ -40,7 +40,7 @@ retrieve_dataset(){
 	unzip $NEGATIVE_ZIP
 
 	# Only save useable folders in modified dataset
-	if [[ $1 == 'modified' ]]; then
+	if [[ $2 == 'modified' ]]; then
 		# Make sure they are formatted properly
 		# Positive data
 		mv CT_COVID/Useable .
