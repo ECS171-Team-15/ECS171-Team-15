@@ -11,7 +11,7 @@
 │   ├── preprocessing.py # Preprocesses the dataset
 │   ├── preprocessing_test.py
 ├── raw_data # NOTE: Generated Folder. Not in the repository by default
-│   ├── COVID # Contains the positive images
+│   ├── CT_COVID # Contains the positive images
 │   └── CT_NonCOVID # Contains the negative images
 └── README.md
 └── fetch-data.sh # Downloads the raw dataset
