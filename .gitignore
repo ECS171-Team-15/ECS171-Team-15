@@ -3,7 +3,11 @@
 **/__pycache__
 
 # Dataset is too large to be uploaded to git
-/processed_data/full_data.csv
+processed_data/*.csv
+raw_data/
 
 # Test generated files
-processed_data/*.png
+processed_data/tests/*.png
+
+# Nohup redirecteed output
+**/nohup.out
