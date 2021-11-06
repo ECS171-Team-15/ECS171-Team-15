@@ -4,11 +4,11 @@
 # Retrieves both modified and original datasets
 
 # Print usage
-if [[ $1 == '-h' ]]; then
-	echo 'Usage: bash fetch-data.sh'
-	echo 'Downloads both the original and modified dataset'
-	exit
-fi
+# if [[ $1 == '-h' ]]; then
+# 	echo 'Usage: bash fetch-data.sh'
+# 	echo 'Downloads both the original and modified dataset'
+# 	exit
+# fi
 
 check_and_remove_dir(){
 	test -e $1
@@ -17,8 +17,11 @@ check_and_remove_dir(){
 	fi
 }
 
+echo -n "Removing unclean data..."
 RAW_DATA_PATH='./raw_data'
 check_and_remove_dir $RAW_DATA_PATH
+
+echo "done."
 
 mkdir $RAW_DATA_PATH
 cd $RAW_DATA_PATH
@@ -28,16 +31,24 @@ POSITIVE_ZIP='CT_COVID.zip'
 NEGATIVE_ZIP='CT_NonCOVID.zip'
 
 retrieve_dataset(){
+	echo -n "Downloading $2 data..."
+
 	# Make directory for this dataset
 	mkdir $2
 	cd $2
 
 	# Download zip files from link
-	wget "$1/${POSITIVE_ZIP}"
-	wget "$1/${NEGATIVE_ZIP}"
+	wget "$1/${POSITIVE_ZIP}" &> /dev/null
+	wget "$1/${NEGATIVE_ZIP}" &> /dev/null
 
-	unzip $POSITIVE_ZIP
-	unzip $NEGATIVE_ZIP
+	echo "done."
+
+	echo -n "Extracting $2 data..."
+
+	unzip $POSITIVE_ZIP &> /dev/null
+	unzip $NEGATIVE_ZIP &> /dev/null
+
+	echo "done."
 
 	# Only save useable folders in modified dataset
 	if [[ $2 == 'modified' ]]; then
@@ -67,4 +78,4 @@ ORIGINAL_LINK='https://github.com/UCSD-AI4H/COVID-CT/raw/master/Images-processed
 retrieve_dataset $MODIFIED_LINK modified
 retrieve_dataset $ORIGINAL_LINK original
 
-echo "Done."
+echo "Script finished."
