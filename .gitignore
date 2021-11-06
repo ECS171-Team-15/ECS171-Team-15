@@ -2,8 +2,12 @@
 /.idea
 **/__pycache__
 
-data/
-model.h5
+# Dataset is too large to be uploaded to git
+processed_data/*.csv
+raw_data/
+
+# Test generated files
+processed_data/tests/*.png
 
 # Nohup redirecteed output
 **/nohup.out
