@@ -2,7 +2,13 @@
 
 # Written by Julian
 # Retrieves both modified and original datasets
-# Source for directory structure : Deep Learning with Python pg 132
+
+# Print usage
+# if [[ $1 == '-h' ]]; then
+# 	echo 'Usage: bash fetch-data.sh'
+# 	echo 'Downloads both the original and modified dataset'
+# 	exit
+# fi
 
 check_and_remove_dir(){
 	test -e $1
