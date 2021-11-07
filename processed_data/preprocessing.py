@@ -6,6 +6,7 @@ import sys
 
 # Output the average width and height of all images in specified folders
 def get_mean_dimensions(dirs: list) -> list:
+    i=0
     height = []
     width = []
     for dir in dirs:
@@ -17,8 +18,9 @@ def get_mean_dimensions(dirs: list) -> list:
 		    w, h = im.size
 		    width.append(w)
 		    height.append(h)
-
-	# Return averages
+		    i = i + 1
+    # Return averages
+    print("Averaged images:", i)
     return sum(width)//len(width), sum(height)//len(height)
 
 # Resize image and convert to grayscale
@@ -45,7 +47,7 @@ if __name__ == '__main__':
 
 	print("Generating mean dimensions...")
 	mean_width, mean_height = get_mean_dimensions(image_dirs)
-
+	print("Width:", mean_width, "height:", mean_height)
 	print("Creating CSV dataset file...")
 	# Create CSV header
 	num_pixels = mean_width * mean_height
