@@ -5,6 +5,7 @@
 # Dataset is too large to be uploaded to git
 processed_data/*.csv
 raw_data/
+./original.csv
 
 # Test generated files
 processed_data/tests/*.png
