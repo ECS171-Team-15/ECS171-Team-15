@@ -17,7 +17,7 @@ def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
     model.add(layers.Dense(1, activation='sigmoid'))
 
     model.compile(optimizer='adam',
-              loss=tensorflow.keras.losses.BinaryCrossentropy(from_logits=True),
+              loss=tensorflow.keras.losses.BinaryCrossentropy(from_logits=False),
               metrics=['accuracy'])
     model.fit(train_x, train_y, epochs=10, validation_data=(test_x, test_y), verbose=1)
     print("Done.")
