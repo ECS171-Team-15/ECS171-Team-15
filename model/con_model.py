@@ -13,7 +13,7 @@ def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
     model.add(layers.Conv2D(64, (3, 3), activation='relu'))
     model.add(layers.Flatten())
     model.add(layers.Dense(64, activation='relu'))
-    model.add(layers.Dense(1))
+    model.add(layers.Dense(1, activation='sigmoid'))
 
     model.compile(optimizer='adam',
               loss=tensorflow.keras.losses.BinaryCrossentropy(from_logits=True),
@@ -46,9 +46,9 @@ if __name__ == "__main__":
     #    except RuntimeError as e:
     #        print(e)
     train_x, train_y, test_x, test_y = parse_test_train()
-    train_x = tensorflow.reshape(train_x, (425, 302, -1))
-    test_x = tensorflow.reshape(test_x, (425, 302, -1))
-    model = build_conv_model(train_x, train_y, test_x, test_y, (425, 302, 1))
+    train_x = tensorflow.reshape(train_x, (-1, 302, 425, 1))
+    test_x = tensorflow.reshape(test_x, (-1, 302, 425, 1))
+    model = build_conv_model(train_x, train_y, test_x, test_y, (302, 425, 1))
     print("Save model...", end=" ")
     model.save("./model.h5")
     print("Done.")
