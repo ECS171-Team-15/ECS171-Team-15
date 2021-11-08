@@ -20,7 +20,7 @@ def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
     model.compile(optimizer='adam',
               loss=tensorflow.keras.losses.BinaryCrossentropy(),
               metrics=['accuracy'])
-    model.fit(train_x, train_y, epochs=10, validation_data=(test_x, test_y), verbose=1)
+    model.fit(train_x, train_y, epochs=50, validation_data=(test_x, test_y), verbose=1)
     print("Done.")
     return model
 
