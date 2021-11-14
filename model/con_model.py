@@ -62,6 +62,7 @@ if __name__ == "__main__":
             # Only 1 channel for grayscaleKerasClassifier
             model = build_conv_model((302, 425, 1), kernel_regularizer, dropout)
             history = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=100)
+            model.save(f'{dropout}{kernel_regularizer}.h5')
             results = model.evaluate(test_x, test_y)
             print("Test loss and accuracy", results)
 
