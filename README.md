@@ -31,7 +31,7 @@ python3 preprocessing.py modified|original
 ```
 This will generate a csv file with our preprocessed data.
 
-4. Train the model. The source code contains the hyperparameters.
+4. Train the model. The source code contains the hyperparameters. By default, it will use `original.csv` as its preprocessed dataset.
 ```
 python3 con_model.py
 ```
