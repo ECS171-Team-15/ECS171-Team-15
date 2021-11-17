@@ -6,11 +6,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import common
 
-def build_conv_model(input_dim, kernel_regularizer, dropout):
-    model = models.Sequential()
+def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
+    # Image augmentation
+    # Only applied to our training data
+    model = models.Sequential([
+        layers.InputLayer(input_shape=input_dim),
+        layers.experimental.preprocessing.RandomFlip(),
+        # 36 degree rotation range in both directions
+        layers.experimental.preprocessing.RandomRotation(0.1),
+        # Zoom range for both width & height: -10% to 10%
+        # We want to fill the edges with black if we zoom out
+        layers.experimental.preprocessing.RandomZoom(0.1, fill_mode="constant"),
+        # Stretch image vertically by [-10%, 10%]
+        layers.experimental.preprocessing.RandomHeight(0.1),
+        # Do the same horizontally
+        layers.experimental.preprocessing.RandomWidth(0.1)
+    ])
 
-    # Convolutional layers
-    model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_dim))
+    # Convolution layers
+    model.add(layers.Conv2D(32, (3, 3), activation='relu'))
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(64, (3, 3), activation='relu', kernel_regularizer=kernel_regularizer))
     model.add(layers.MaxPooling2D((2, 2)))
@@ -29,6 +43,7 @@ def build_conv_model(input_dim, kernel_regularizer, dropout):
     model.compile(optimizer='adam',
               loss=tensorflow.keras.losses.BinaryCrossentropy(),
               metrics=['accuracy'])
+    model.summary()
     return model
 
 if __name__ == "__main__":
