@@ -1,6 +1,7 @@
 import time
 import numpy as np
 import sys
+import common
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -71,7 +72,7 @@ if __name__ == '__main__':
         # class_data = np.asarray(class_data).astype('float64')
 
         if model_name == 'cnn':
-            # Resize training image data into original 2D shape
+            print("Resize training image data into original 2D shape")
         else:
             # Data can be 1D for DNNs
             train_x = tensorflow.reshape(train_x, (-1,))

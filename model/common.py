@@ -2,13 +2,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-def load_and_split_data():
+def load_and_split_data(tSiz, ranSt):
     # Load data
     df = pd.read_csv('../processed_data/original.csv')
     feature_data = df.drop(columns='class')
     label_data = df.iloc[:, df.shape[1]-1]
     # Split data
-    train_x, test_x, train_y, test_y = train_test_split(feature_data, label_data, test_size=0.2, random_state=6)
+    #ZZ train_x, test_x, train_y, test_y = train_test_split(feature_data, label_data, test_size=0.2, random_state=6)
+    train_x, test_x, train_y, test_y = train_test_split(feature_data, label_data, test_size=tSiz, random_state=ranSt)
     return (train_x, test_x, train_y, test_y)
 
 def rescale_data(train_x, test_x):

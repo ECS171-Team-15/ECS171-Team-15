@@ -47,8 +47,15 @@ def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
     return model
 
 if __name__ == "__main__":
+    from timeit import default_timer as timer
+    start = timer()
+
+    tSiz = 0.2
+    ranSt = 77
+    print("random_state=" + ranSt)
+
     # Load data and separate class and features
-    train_x, test_x, train_y, test_y = common.load_and_split_data()
+    train_x, test_x, train_y, test_y = common.load_and_split_data(tSiz, ranSt)
 
     # Scale data to [0, 1] range
     train_x, test_x = common.rescale_data(train_x, test_x)
@@ -110,7 +117,7 @@ if __name__ == "__main__":
             plt.title(title_loss)
             plt.legend()
             plt.savefig(img_name_loss)
-            plt.show()
+            plt.show(block=False)
 
 
             #2) Plot the accuracy for the given HP -> 'green' represents training and 'blue' represents validation
@@ -121,6 +128,7 @@ if __name__ == "__main__":
             plt.title(title_acc)
             plt.legend()
             plt.savefig(img_name_acc)
-            plt.show()
+            plt.show(block=False)
 
-
+    end = timer()
+    print(end - start)  # Time in seconds
