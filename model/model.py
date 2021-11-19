@@ -8,6 +8,7 @@ from tensorflow.keras.layers import Dense, InputLayer
 from tensorflow.keras.optimizers import SGD
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
+import tensorflow.config
 
 DATASET_PATH = '../processed_data/full_data.csv'
 
@@ -33,13 +34,8 @@ def create_model(learning_rate, hidden_nodes, input_dim):
 # Pass in # of hidden layer nodes as arguments
 # Usage example: python3 model.py 1000 100 20 5
 if __name__ == '__main__':
-    print("GPU Test:" + tensorflow.version.VERSION)
     # Save the start time to calculate the total running time
     start_time = time.time()
-
-    # Limit memory usage of GPU
-    tensorflow.config.list_physical_devices()
-    #exit(1)
 
     # Input validation
     if len(sys.argv) < 2:
@@ -83,5 +79,4 @@ if __name__ == '__main__':
         print("Accuracy: %f (STD: %f) with: %r" % (round(mean, 2), round(stdev, 4), param))
 
     # Time elapsed
-    print()
-    print(f"Program time: {time.time() - start_time} seconds")
+    print(f"\nProgram time: {time.time() - start_time} seconds")
