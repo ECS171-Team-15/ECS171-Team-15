@@ -8,7 +8,6 @@ from tensorflow.keras.layers import Dense, InputLayer
 from tensorflow.keras.optimizers import SGD
 from sklearn.model_selection import GridSearchCV
 from keras.wrappers.scikit_learn import KerasClassifier
-import tensorflow.config
 
 DATASET_PATH = '../processed_data/full_data.csv'
 
