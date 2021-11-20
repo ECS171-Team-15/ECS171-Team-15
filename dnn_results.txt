@@ -1,0 +1,44 @@
+MAX ACCURACY: 0.525510 using {'epochs': 10, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.1}
+
+TRACEBACK:
+
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 10, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.140000 (STD: 0.199600) with: {'epochs': 10, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.140000 (STD: 0.199600) with: {'epochs': 10, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.190000 (STD: 0.271800) with: {'epochs': 10, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 100, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.140000 (STD: 0.199600) with: {'epochs': 100, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.190000 (STD: 0.271800) with: {'epochs': 100, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.190000 (STD: 0.271800) with: {'epochs': 100, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '250', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '200', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.530000 (STD: 0.409800) with: {'epochs': 500, 'hidden_nodes': '100', 'input_dim': 120183, 'learning_rate': 0.5}
+Accuracy: 0.190000 (STD: 0.271800) with: {'epochs': 500, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.1}
+Accuracy: 0.140000 (STD: 0.199600) with: {'epochs': 500, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.3}
+Accuracy: 0.140000 (STD: 0.199600) with: {'epochs': 500, 'hidden_nodes': '25', 'input_dim': 120183, 'learning_rate': 0.5}
+
+Program time: 1164.6541900634766 seconds
+
+Process finished with exit code 0
