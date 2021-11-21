@@ -9,8 +9,9 @@ import common
 CSV_PATH = "../processed_data/original.csv"
 TEST_DATA_SIZE = 0.2
 RANDOM_STATE = 77
+OUTPUT_DIM = 1
 
-def build_conv_model(input_dim, kernel_regularizer, dropout):
+def build_conv_model(input_dim, kernel_regularizer, dropout, dropout_rate=0.5):
     model = models.Sequential()
 
     # Convolutional layers
@@ -22,11 +23,11 @@ def build_conv_model(input_dim, kernel_regularizer, dropout):
     model.add(layers.Flatten())
 
     if dropout:
-        model.add(layers.Dropout(0.5))
+        model.add(layers.Dropout(dropout_rate))
 
     # Classifier layers
     model.add(layers.Dense(64, activation='relu'))
-    model.add(layers.Dense(1, activation='sigmoid'))
+    model.add(layers.Dense(OUTPUT_DIM, activation='sigmoid'))
 
     # Default learning rate=0.001
     # Source: https://keras.io/api/optimizers/adam/
@@ -43,8 +44,8 @@ if __name__ == "__main__":
     train_x, test_x = common.rescale_data(train_x, test_x)
 
     # Reshape data to 2D
-    train_x = tensorflow.reshape(train_x, (-1, 302, 425, 1))
-    test_x = tensorflow.reshape(test_x, (-1, 302, 425, 1))
+    train_x = tensorflow.reshape(train_x, (-1, 302, 425, OUTPUT_DIM))
+    test_x = tensorflow.reshape(test_x, (-1, 302, 425, OUTPUT_DIM))
 
     # Model hyperparameters
     param_grid = {
@@ -62,7 +63,7 @@ if __name__ == "__main__":
             # Manually set the mean dimensions of the original dataset
             # 3rd item in tuple is the number of channels
             # Only 1 channel for grayscaleKerasClassifier
-            model = build_conv_model((302, 425, 1), kernel_regularizer, dropout)
+            model = build_conv_model((302, 425, OUTPUT_DIM), kernel_regularizer, dropout)
             history = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=100)
             model.save(f'{dropout}{kernel_regularizer}.h5')
             results = model.evaluate(test_x, test_y)
