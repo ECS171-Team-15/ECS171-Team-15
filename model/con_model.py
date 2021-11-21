@@ -6,25 +6,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import common
 
-def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
-    # Image augmentation
-    # Only applied to our training data
-    model = models.Sequential([
-        layers.InputLayer(input_shape=input_dim),
-        layers.experimental.preprocessing.RandomFlip(),
-        # 36 degree rotation range in both directions
-        layers.experimental.preprocessing.RandomRotation(0.1),
-        # Zoom range for both width & height: -10% to 10%
-        # We want to fill the edges with black if we zoom out
-        layers.experimental.preprocessing.RandomZoom(0.1, fill_mode="constant"),
-        # Stretch image vertically by [-10%, 10%]
-        layers.experimental.preprocessing.RandomHeight(0.1),
-        # Do the same horizontally
-        layers.experimental.preprocessing.RandomWidth(0.1)
-    ])
+CSV_PATH = "../processed_data/original.csv"
+TEST_DATA_SIZE = 0.2
+RANDOM_STATE = 77
 
-    # Convolution layers
-    model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+def build_conv_model(input_dim, kernel_regularizer, dropout):
+    model = models.Sequential()
+
+    # Convolutional layers
+    model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_dim))
     model.add(layers.MaxPooling2D((2, 2)))
     model.add(layers.Conv2D(64, (3, 3), activation='relu', kernel_regularizer=kernel_regularizer))
     model.add(layers.MaxPooling2D((2, 2)))
@@ -43,19 +33,11 @@ def build_conv_model(train_x, train_y, test_x, test_y, input_dim):
     model.compile(optimizer='adam',
               loss=tensorflow.keras.losses.BinaryCrossentropy(),
               metrics=['accuracy'])
-    model.summary()
     return model
 
 if __name__ == "__main__":
-    from timeit import default_timer as timer
-    start = timer()
-
-    tSiz = 0.2
-    ranSt = 77
-    print("random_state=" + ranSt)
-
     # Load data and separate class and features
-    train_x, test_x, train_y, test_y = common.load_and_split_data(tSiz, ranSt)
+    train_x, test_x, train_y, test_y = common.load_and_split_data(TEST_DATA_SIZE, RANDOM_STATE, CSV_PATH)
 
     # Scale data to [0, 1] range
     train_x, test_x = common.rescale_data(train_x, test_x)
@@ -67,11 +49,9 @@ if __name__ == "__main__":
     # Model hyperparameters
     param_grid = {
         'dropout': [
-                    False,
                     True
                    ],
         'kernel_regularizer': [
-                               None,
                                'l1_l2'
                               ],
     }
@@ -94,12 +74,12 @@ if __name__ == "__main__":
             if(kernel_regularizer == None):
                 title_kr_value = 'no'
             if(dropout):
-                title_acc = f'Model performance (accuracy) with dropout and {title_kr_value} regularization' 
-                title_loss = f'Model performance (loss) with dropout and {title_kr_value} regularization' 
+                title_acc = f'Model performance (accuracy) with dropout and {title_kr_value} regularization'
+                title_loss = f'Model performance (loss) with dropout and {title_kr_value} regularization'
 
             else:
-                title_acc = f'Model performance (accuracy) with no dropout and {title_kr_value} regularization' 
-                title_loss = f'Model performance (loss) with no dropout and {title_kr_value} regularization' 
+                title_acc = f'Model performance (accuracy) with no dropout and {title_kr_value} regularization'
+                title_loss = f'Model performance (loss) with no dropout and {title_kr_value} regularization'
             img_name_loss = f'{dropout}{kernel_regularizer}_loss.png'
             img_name_acc = f'{dropout}{kernel_regularizer}_acc.png'
 
@@ -117,7 +97,7 @@ if __name__ == "__main__":
             plt.title(title_loss)
             plt.legend()
             plt.savefig(img_name_loss)
-            plt.show(block=False)
+            plt.show()
 
 
             #2) Plot the accuracy for the given HP -> 'green' represents training and 'blue' represents validation
@@ -128,7 +108,5 @@ if __name__ == "__main__":
             plt.title(title_acc)
             plt.legend()
             plt.savefig(img_name_acc)
-            plt.show(block=False)
+            plt.show()
 
-    end = timer()
-    print(end - start)  # Time in seconds
