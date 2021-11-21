@@ -13,3 +13,4 @@ processed_data/tests/*.png
 # Nohup redirecteed output
 **/nohup.out
 *.h5
+*.png
