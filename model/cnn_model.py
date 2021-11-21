@@ -82,7 +82,9 @@ def plot_accuracy_and_loss(dropout, kernel_regularizer):
 
 if __name__ == "__main__":
     # Load data and separate class and features
+    print("Loading from CSV file: " + CSV_PATH)
     train_x, test_x, train_y, test_y = common.load_and_split_data(TEST_DATA_SIZE, RANDOM_STATE, CSV_PATH)
+    print("Done!")
 
     # Scale data to [0, 1] range
     train_x, test_x = common.rescale_data(train_x, test_x)
@@ -115,3 +117,4 @@ if __name__ == "__main__":
 
             # Plot accuracy and loss for each combination of hyperparameters
             plot_accuracy_and_loss(dropout, kernel_regularizer)
+            print("Graphs have been plotted.")
