@@ -2,9 +2,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-def load_and_split_data(tSiz, ranSt):
+def load_and_split_data(tSiz, ranSt, csv):
     # Load data
-    df = pd.read_csv('../processed_data/original.csv')
+    df = pd.read_csv(csv)
     feature_data = df.drop(columns='class')
     label_data = df.iloc[:, df.shape[1]-1]
     # Split data
