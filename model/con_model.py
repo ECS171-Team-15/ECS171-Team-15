@@ -97,8 +97,7 @@ if __name__ == "__main__":
             plt.title(title_loss)
             plt.legend()
             plt.savefig(img_name_loss)
-            plt.show()
-
+            plt.show(block=False)
 
             #2) Plot the accuracy for the given HP -> 'green' represents training and 'blue' represents validation
             plt.plot(train_acc, 'g', label = 'Training Accuracy')
@@ -108,5 +107,4 @@ if __name__ == "__main__":
             plt.title(title_acc)
             plt.legend()
             plt.savefig(img_name_acc)
-            plt.show()
-
+            plt.show(block=False)
