@@ -7,8 +7,8 @@ def load_and_split_data(tSiz, ranSt, csv):
     df = pd.read_csv(csv)
     feature_data = df.drop(columns='class')
     label_data = df.iloc[:, df.shape[1]-1]
+
     # Split data
-    #ZZ train_x, test_x, train_y, test_y = train_test_split(feature_data, label_data, test_size=0.2, random_state=6)
     train_x, test_x, train_y, test_y = train_test_split(feature_data, label_data, test_size=tSiz, random_state=ranSt)
     return (train_x, test_x, train_y, test_y)
 
