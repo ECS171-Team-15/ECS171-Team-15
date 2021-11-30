@@ -36,8 +36,9 @@ if __name__ == '__main__':
 
 	# Input validation
 	# Must take proper keyword as argument
-	if len(sys.argv) < 2 and (sys.argv[1] != "original" or sys.argv[1] != "modified"):
-		print("Usage: python3 preprocessing.py (original|modified)")
+	if len(sys.argv) < 2:
+		print("Usage: python3 preprocessing.py (original|modified|OtherFolderName)")
+		exit(1)
 
 	# Generate either modified or original dataset
 	COVID_PATH = f'../raw_data/{sys.argv[1]}/CT_COVID'
