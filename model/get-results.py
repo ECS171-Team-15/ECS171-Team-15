@@ -8,8 +8,12 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 import common
 
+CSV_PATH = "../processed_data/original.csv"
+TEST_DATA_SIZE = 0.2
+RANDOM_STATE = 6
 
 def eval_model(model_filename, test_x, test_y):
+    print(f"Reading .h file: {model_filename}\n")
     model = load_model(model_filename)
     predicted_y = model.predict(test_x)
     predicted_y = [round(y[0], 0) for y in predicted_y]
@@ -35,7 +39,7 @@ def eval_model(model_filename, test_x, test_y):
 
 
 if __name__ == '__main__':
-    _, test_x, _, test_y = common.load_and_split_data()
+    _, test_x, _, test_y = common.load_and_split_data(TEST_DATA_SIZE, RANDOM_STATE, CSV_PATH)
 
     # Scale test data to [0, 1] range
     scaler = MinMaxScaler()
