@@ -8,10 +8,10 @@ import common
 
 CSV_PATH = "../processed_data/original.csv"
 TEST_DATA_SIZE = 0.2
-RANDOM_STATE = 77
+RANDOM_STATE = 6
 OUTPUT_DIM = 1
-MEAN_WIDTH = 302
-MEAN_HEIGHT = 425
+MEAN_WIDTH = 425
+MEAN_HEIGHT = 302
 EPOCHS = 100
 
 def build_conv_model(input_dim, kernel_regularizer, dropout, dropout_rate=0.5):
@@ -31,6 +31,8 @@ def build_conv_model(input_dim, kernel_regularizer, dropout, dropout_rate=0.5):
     # Classifier layers
     model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dense(OUTPUT_DIM, activation='sigmoid'))
+
+    #model.summary()
 
     # Default learning rate=0.001
     # Source: https://keras.io/api/optimizers/adam/
@@ -85,21 +87,26 @@ if __name__ == "__main__":
     print("Loading from CSV file: " + CSV_PATH)
     train_x, test_x, train_y, test_y = common.load_and_split_data(TEST_DATA_SIZE, RANDOM_STATE, CSV_PATH)
     print("Done!")
-
+    print("Shape of tensor train_x:", train_x.shape)
+    print("Shape of tensor train_y:", train_y.shape)
+    print("Shape of tensor test_x:", test_x.shape)
+    print("Shape of tensor test_y:", test_y.shape)
     # Scale data to [0, 1] range
     train_x, test_x = common.rescale_data(train_x, test_x)
 
     # Reshape data to 2D
-    train_x = tensorflow.reshape(train_x, (-1, MEAN_WIDTH, MEAN_HEIGHT, OUTPUT_DIM))
-    test_x = tensorflow.reshape(test_x, (-1, MEAN_WIDTH, MEAN_HEIGHT, OUTPUT_DIM))
+    train_x = tensorflow.reshape(train_x, (-1, MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM))
+    test_x = tensorflow.reshape(test_x, (-1, MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM))
+    print("Shape of tensor train_x:", train_x.shape)
+    print("Shape of tensor train_y:", train_y.shape)
 
     # Model hyperparameters
     param_grid = {
         'dropout': [
-                    True
+                    True, False
                    ],
         'kernel_regularizer': [
-                               'l1_l2'
+                               'l1_l2', None
                               ],
     }
 
@@ -109,7 +116,7 @@ if __name__ == "__main__":
             # Manually set the mean dimensions of the original dataset
             # 3rd item in tuple is the number of channels
             # Only 1 channel for grayscaleKerasClassifier
-            model = build_conv_model((MEAN_WIDTH, MEAN_HEIGHT, OUTPUT_DIM), kernel_regularizer, dropout)
+            model = build_conv_model((MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM), kernel_regularizer, dropout)
             history = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=EPOCHS)
             model.save(f'{dropout}{kernel_regularizer}.h5')
             results = model.evaluate(test_x, test_y)
