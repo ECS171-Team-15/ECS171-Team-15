@@ -5,7 +5,10 @@
 
 ```
 ├── model
-│   └── con_model.py # Trains model using preprocessed dataset
+│   └── cnn_model.py
+│   └── dnn_model.py
+│   └── get-results.py # Evaluates cnn model without having to retrain it
+│   └── common.py # Helper functions for training model
 ├── processed_data
 │   ├── preprocessing.py # Preprocesses the raw dataset in raw_data
 ├── raw_data # NOTE: Generated Folder. Not in the repository by default
@@ -47,7 +50,7 @@ Changes to the repository are not made directly. Instead:
 2. Clone your fork to your local system.
 3. Make and commit your changes to your fork.
 4. Push your changes to your remote repository on Github.
-5. To apply your changes, submit a pull request to this ![repository](https://github.com/jndnguyen123/ECS171-Team-15). Before doing this, make sure your fork is updated by fetching (retrieving the latest changes from this repository) and rebasing those changes to your fork. That way, your changes will be applied to the latest version of this repository.
+5. To apply your changes, submit a pull request to this ![repository](https://github.com/ECS171-Team-15/ECS171-Team-15). Before doing this, make sure your fork is updated by fetching (retrieving the latest changes from this repository) and rebasing those changes to your fork. That way, your changes will be applied to the latest version of this repository.
 6. Wait for the team leader to approve and merge your changes. (Merging means that your changes are finally applied to this repository)
 
 **Modifying Your Pull Request**
