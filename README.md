@@ -36,8 +36,17 @@ This will generate a csv file with our preprocessed data.
 
 4. Train the model. The source code contains the hyperparameters. By default, it will use `original.csv` as its preprocessed dataset.
 ```
-python3 con_model.py
+python3 cnn_model.py
 ```
+
+### Evaluating Model on CSIF
+
+Note: this section is only verified on CSIF PC 21-25. If you run it on other PCs, you might get different results.
+
+To evaluate the model:
+
+1. Download the models from this [link](https://drive.google.com/drive/folders/1lgG4LkhwK06ysk9o09jS8ABqopvbBQYz) to the `model/` folder.
+2. Run `get-results.py` and it will generate the classification report for all the models in the `model/` folder.
 
 ### Making Changes to Code
 
