@@ -45,7 +45,7 @@ Note: this section is only verified on CSIF PC 21-25. If you run it on other PCs
 
 To evaluate the model:
 
-1. Download the models from this [link](https://drive.google.com/drive/folders/1lgG4LkhwK06ysk9o09jS8ABqopvbBQYz) to the `model/` folder.
+1. Download any of the models from this [link](https://drive.google.com/drive/folders/1lgG4LkhwK06ysk9o09jS8ABqopvbBQYz) to the `model/` folder.
 2. Run `get-results.py` and it will generate the classification report for all the models in the `model/` folder.
 
 ### Making Changes to Code
