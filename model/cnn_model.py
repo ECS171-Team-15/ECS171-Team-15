@@ -84,7 +84,7 @@ if __name__ == "__main__":
     start_time = time.time()
     print("sys.argv: " + str(len(sys.argv)))
     if len(sys.argv) < 6:
-        print(f'Usage: {sys.argv[0]} random dropout regularizer')
+        print(f'Usage: {sys.argv[0]} height width random dropout regularizer')
         exit(1)
 
     height = sys.argv[1]
