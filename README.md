@@ -37,10 +37,29 @@ But before training the model you will need to rename the CSV file to f'pix{heig
 
 4. Train the model. The trun.py source code contains the hyperparameters that will be used along with different seed values. You will need to supply the height and width of the images as parameters that you received from preprocessing.py. For convenience, original dataset has values 425 302 for height and width, respectively.
 
+trun.py <height> <width>
+
 Example for running the training and validation for the CNN model on the original dataset:
 trun.py 425 302
+will run 16 cases as the following:
+
+      Running: C:\...\python.exe cnn_model.py  302 425 6 True l1_l2
+      Running: C:\...\python.exe cnn_model.py  302 425 6 True None
+      Running: C:\...\python.exe cnn_model.py  302 425 6 False l1_l2
+      ...
 ```
-python3 cnn_model.py
+Or you can run each case individually if you don't want to use the trun.py to run a combination of hyperpamaters for you automatically.
+
+python3 cnn_model.py <height> <width> <random> <dropout> <regularizer>
+
+    	random number (the seed): 6, 13, 45, 77
+    	dropout: True, False
+    	kernel regularizer: 'l1_l2', None
+
+For example:
+	cnn_model.py  302 425 6 True l1_l2
+will run only the first case within the above for trun.py:
+	Running: C:\...\python.exe cnn_model.py  302 425 6 True l1_l2
 ```
 
 ### Evaluating Model on CSIF
