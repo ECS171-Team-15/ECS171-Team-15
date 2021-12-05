@@ -5,13 +5,10 @@ from keras.wrappers.scikit_learn import KerasClassifier
 import matplotlib.pyplot as plt
 import numpy as np
 import common
+import sys
+import time
 
-CSV_PATH = "../processed_data/original.csv"
 TEST_DATA_SIZE = 0.2
-RANDOM_STATE = 6
-OUTPUT_DIM = 1
-MEAN_WIDTH = 425
-MEAN_HEIGHT = 302
 EPOCHS = 100
 
 def build_conv_model(input_dim, kernel_regularizer, dropout, dropout_rate=0.5):
@@ -83,6 +80,28 @@ def plot_accuracy_and_loss(dropout, kernel_regularizer):
     plt.show(block=False)
 
 if __name__ == "__main__":
+    SPC  = " "
+    start_time = time.time()
+    print("sys.argv: " + str(len(sys.argv)))
+    if len(sys.argv) < 6:
+        print(f'Usage: {sys.argv[0]} random dropout regularizer')
+        exit(1)
+
+    height = sys.argv[1]
+    width = sys.argv[2]
+    csvfile = f'pix{height}x{width}'
+
+    CSV_PATH = "../processed_data/" + csvfile + ".csv"
+    (MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM) = (int(height), int(width), 1)
+    #(MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM) = (146, 207, 1)
+
+    print("RANDOM_STATE: " + sys.argv[3])
+    RANDOM_STATE = int(sys.argv[3])
+    dropout = sys.argv[4]
+    kernel_regularizer = sys.argv[5]
+    kernel_regularizer = None if kernel_regularizer == 'None' else kernel_regularizer
+    print("Runing: " + sys.argv[0] + SPC + sys.argv[1] + SPC + sys.argv[2] + SPC + sys.argv[3])
+
     # Load data and separate class and features
     print("Loading from CSV file: " + CSV_PATH)
     train_x, test_x, train_y, test_y = common.load_and_split_data(TEST_DATA_SIZE, RANDOM_STATE, CSV_PATH)
@@ -100,7 +119,7 @@ if __name__ == "__main__":
     print("Shape of tensor train_x:", train_x.shape)
     print("Shape of tensor train_y:", train_y.shape)
 
-    # Model hyperparameters
+    """"# Model hyperparameters
     param_grid = {
         'dropout': [
                     True, False
@@ -108,20 +127,20 @@ if __name__ == "__main__":
         'kernel_regularizer': [
                                'l1_l2', None
                               ],
-    }
+    }"""
 
-    for dropout in param_grid['dropout']:
-        for kernel_regularizer in param_grid['kernel_regularizer']:
-            print("Running model with dropout:", dropout, "and kernel_regularizer:", kernel_regularizer)
-            # Manually set the mean dimensions of the original dataset
-            # 3rd item in tuple is the number of channels
-            # Only 1 channel for grayscaleKerasClassifier
-            model = build_conv_model((MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM), kernel_regularizer, dropout)
-            history = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=EPOCHS)
-            model.save(f'{dropout}{kernel_regularizer}.h5')
-            results = model.evaluate(test_x, test_y)
-            print("Test loss and accuracy", results)
+    ##for dropout in param_grid['dropout']: for kernel_regularizer in param_grid['kernel_regularizer']:
+    print("Running model with dropout:", dropout, "and kernel_regularizer:", kernel_regularizer)
+    # Manually set the mean dimensions of the original dataset
+    # 3rd item in tuple is the number of channels
+    # Only 1 channel for grayscaleKerasClassifier
+    model = build_conv_model((MEAN_HEIGHT, MEAN_WIDTH, OUTPUT_DIM), kernel_regularizer, dropout)
+    history = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=EPOCHS)
+    model.save(f'{dropout}{kernel_regularizer}.h5')
+    results = model.evaluate(test_x, test_y)
+    print("Test loss and accuracy", results)
 
-            # Plot accuracy and loss for each combination of hyperparameters
-            plot_accuracy_and_loss(dropout, kernel_regularizer)
-            print("Graphs have been plotted.")
+    # Plot accuracy and loss for each combination of hyperparameters
+    plot_accuracy_and_loss(dropout, kernel_regularizer)
+    print("Graphs have been plotted.")
+    print(f"\nProgram time: {time.time() - start_time} seconds")
