@@ -5,10 +5,11 @@
 
 ```
 ├── model
-│   └── cnn_model.py
+│   └── cnn_model.py # Runs the model once with given hyperparameters
 │   └── dnn_model.py
 │   └── get-results.py # Evaluates cnn model without having to retrain it
 │   └── common.py # Helper functions for training model
+│   └── trun.py # Runs grid search on cnn_model.py. Hyperparameters are *inside* the code
 ├── processed_data
 │   ├── preprocessing.py # Preprocesses the raw dataset in raw_data
 ├── raw_data # NOTE: Generated Folder. Not in the repository by default
