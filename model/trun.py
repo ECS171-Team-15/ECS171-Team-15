@@ -33,8 +33,7 @@ if __name__ == '__main__':
     for ran in runParm['ranNum']:
         for drop in param_grid['dropout']:
             for regu in param_grid['kernel_regularizer']:
-                # cmd = r"C:\Users\delli7new2\Documents\GitHub\ECS171-Team-15\venv\Scripts\python.exe cnn_model.py"
-                cmd = r"C:\Users\delli7new2\Documents\GitHub\ECS171-Team-15\venv\Scripts\python.exe cnn_MOD.py "
+                cmd = f'{sys.executable} cnn_model.py'
                 cmd0 = f'{cmd} {hi} {wid} {ran} {drop} {regu}'
                 print(" Running: " + cmd0)
                 returned_value = os.system(cmd0)  # returns the exit code in unix
