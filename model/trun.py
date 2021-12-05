@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     runParm = {
         'ranNum': [
-            6, 13, 45, 77
+            6
         ]
     }
     SP = " "
