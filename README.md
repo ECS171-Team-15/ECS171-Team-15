@@ -35,12 +35,12 @@ python3 preprocessing.py modified|original
 This will generate a csv file with our preprocessed data.
 But before training the model you will need to rename the CSV file to f'pix{height}x{width}.csv' (you should know what this means in python code).
 
-4. Train the model. The trun.py source code contains the hyperparameters that will be used along with different seed values. You will need to supply the height and width of the images as parameters that you received from preprocessing.py. For convenience, original dataset has values 425 302 for height and width, respectively.
+4. Train the model. The trun.py source code contains the hyperparameters that will be used along with different seed values. You will need to supply the height and width of the images as parameters that you received from preprocessing.py. For convenience, original dataset has values 302 425 for height and width, respectively.
 
 trun.py <height> <width>
 
 Example for running the training and validation for the CNN model on the original dataset:
-trun.py 425 302
+trun.py 302 425
 will run 16 cases as the following:
 
       Running: C:\...\python.exe cnn_model.py  302 425 6 True l1_l2
