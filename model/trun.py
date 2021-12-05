@@ -5,7 +5,7 @@ import sys
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Usage: trun.py hight width")
+        print("Usage: trun.py height width")
         print("   Test runner runs only one combination (dropout & kernel_regularizer) each time to avoid GPU memory issue.")
         exit(1)
 
