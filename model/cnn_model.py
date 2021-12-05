@@ -119,16 +119,6 @@ if __name__ == "__main__":
     print("Shape of tensor train_x:", train_x.shape)
     print("Shape of tensor train_y:", train_y.shape)
 
-    """"# Model hyperparameters
-    param_grid = {
-        'dropout': [
-                    True, False
-                   ],
-        'kernel_regularizer': [
-                               'l1_l2', None
-                              ],
-    }"""
-
     ##for dropout in param_grid['dropout']: for kernel_regularizer in param_grid['kernel_regularizer']:
     print("Running model with dropout:", dropout, "and kernel_regularizer:", kernel_regularizer)
     # Manually set the mean dimensions of the original dataset
